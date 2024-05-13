@@ -81,23 +81,17 @@ fun MainScreen() {
         Column(modifier = Modifier.padding(horizontal = 22.dp)) {
             Row(modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 40.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                Box(
+                .padding(top = 40.dp), horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                AsyncImage(
+                    model = "https://sun9-13.userapi.com/impg/ZQXeQlLwOot6PQATRlB-2ZU8K9n0Di5iaPpneg/7K0dMemnuk8.jpg?size=960x1280&quality=95&sign=d37fd89ac583f9713809e4c1f9dabea1&type=album",
+                    contentDescription = "",
                     modifier = Modifier
-                        .size(46.dp)
-                        .clip(RoundedCornerShape(100))
-                        .background(Color(0xffA294F6)),
-                    contentAlignment = Alignment.Center
-                ){
-                    AsyncImage(
-                        model = "https://sun9-13.userapi.com/impg/ZQXeQlLwOot6PQATRlB-2ZU8K9n0Di5iaPpneg/7K0dMemnuk8.jpg?size=960x1280&quality=95&sign=d37fd89ac583f9713809e4c1f9dabea1&type=album",
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(42.dp)
-                            .clip(RoundedCornerShape(100)),
-                        contentScale = ContentScale.Crop
-                    )
-                }
+                        .size(52.dp)
+                        .clip(RoundedCornerShape(100)),
+                    contentScale = ContentScale.Crop
+                )
 
                 Icon(
                     imageVector = Icons.Default.Notifications,
@@ -279,6 +273,9 @@ fun MainScreen() {
                         )
                     }
                     Spacer(modifier = Modifier.height(10.dp))
+                }
+                item{
+                    Spacer(modifier = Modifier.height(60.dp))
                 }
             }
             Box(modifier = Modifier
