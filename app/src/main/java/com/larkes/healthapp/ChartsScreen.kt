@@ -101,14 +101,15 @@ fun ChartsScreen() {
                         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text(
                                 text = "Сон",
-                                color = Color(0xFF7482A2),
-                                fontSize = 22.sp,
+                                color = Color(0xff2B2B2B),
+                                fontSize = 20.sp,
                                 fontWeight = FontWeight.Medium
                                 )
                             Icon(
                                 painter = painterResource(id = R.drawable.baseline_bedtime_24),
                                 contentDescription = "",
-                                tint = Color(0xff5342AC)
+                                tint = Color(0xff5342AC),
+                                modifier = Modifier.size(26.dp)
                             )
                         }
                         Text(
@@ -133,8 +134,8 @@ fun ChartsScreen() {
                     ) {
                         Text(
                             text = "Качество Сна",
-                            color = Color(0xFF7482A2),
-                            fontSize = 22.sp,
+                            color = Color(0xff2B2B2B),
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Medium
                         )
                         Spacer(modifier = Modifier.height(5.dp))
@@ -167,8 +168,8 @@ fun ChartsScreen() {
                 ) {
                     Text(
                         text = "Фазы сна",
-                        color = Color(0xFF7482A2),
-                        fontSize = 22.sp,
+                        color = Color(0xff2B2B2B),
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Medium
                     )
                     Spacer(modifier = Modifier.height(25.dp))
@@ -227,8 +228,8 @@ fun ChartsScreen() {
                 ) {
                     Text(
                         text = "Активность",
-                        color = Color(0xFF7482A2),
-                        fontSize = 22.sp,
+                        color = Color(0xff2B2B2B),
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Medium
                     )
                     Spacer(modifier = Modifier.height(15.dp))
@@ -270,8 +271,8 @@ fun ChartsScreen() {
                 ) {
                     Text(
                         text = "Анализ и рекомендации",
-                        color = Color(0xFF7482A2),
-                        fontSize = 22.sp,
+                        color = Color(0xff2B2B2B),
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Medium
                     )
                     Spacer(modifier = Modifier.height(15.dp))
@@ -282,23 +283,33 @@ fun ChartsScreen() {
                         fontWeight = FontWeight.Medium
                     )
                     Spacer(modifier = Modifier.height(15.dp))
-                    Row(
+                    Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(15))
                             .background(Color(0xffF1F3FA))
+                            .fillMaxWidth()
+                            .padding(horizontal = 15.dp, vertical = 10.dp)
                     ) {
-//                        Icon(painterResource(id = R.drawable.baseline_edit_note_24),
-//                            contentDescription = "",
-//                            tint = Color()
-//                        )
-                        Text(
-                            text = "Расслабление мышц перед сном снимает тонус и успокаивает, облегчая засыпание. Это также поможет улучшить качество сна.",
-                            color = Color(0xFF7482A2),
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Medium,
-                            modifier = Modifier.padding(horizontal = 15.dp, vertical = 10.dp)
-                        )
+                        Row{
+                            Box(
+                                modifier = Modifier.padding(end = 4.dp, top = 2.dp)
+                            ) {
+                                Icon(painterResource(id = R.drawable.baseline_edit_note_24),
+                                    contentDescription = "",
+                                    tint = Color(0xff5342AC),
+                                    modifier = Modifier
+                                        .size(20.dp)
+                                )
+                            }
+                            Text(
+                                text = "Расслабление мышц перед сном снимает тонус и успокаивает, облегчая засыпание. Это также поможет улучшить качество сна.",
+                                color = Color(0xFF7482A2),
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Medium,
+                            )
+                        }
                     }
+
                 }
             }
         }
@@ -329,20 +340,20 @@ fun RowDonatStat(
             Text(
                 text =  title ,
                 color = Color(0xff2B2B2B),
-                fontSize = 18.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold
             )
             Text(
                 text = text,
                 color = Color(0x8C2B2B2B),
-                fontSize = 16.sp,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Medium
             )
         }
         Text(
             text = subtext,
             color = colorText ?: Color.Black,
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             fontWeight = FontWeight.Medium
         )
     }
