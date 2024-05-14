@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.larkes.healthapp.ChartsScreen
 import com.larkes.healthapp.MainScreen
+import com.larkes.healthapp.SettingsScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -21,13 +22,18 @@ fun Navigation(navController: NavHostController) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        NavHost(navController = navController, startDestination = "main"){
+        NavHost(navController = navController,
+            startDestination = "main"
+        ){
 
             composable("main"){
                 MainScreen()
             }
             composable("charts"){
                 ChartsScreen()
+            }
+            composable("settings"){
+                SettingsScreen()
             }
 
         }

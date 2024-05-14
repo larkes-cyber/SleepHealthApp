@@ -99,9 +99,10 @@ fun BottomNavItem(
                 painter = painterResource(id = icon),
                 contentDescription = "",
                 modifier = Modifier
-                    .size(28.dp)
+                    .size(28.dp),
+                tint = if(active) Color(0xff2B2B2B) else Color.Black
             )
-            if(active) Text(text = title)
+            if(active) Text(text = title, color = Color(0xff2B2B2B))
         }
 
     }
