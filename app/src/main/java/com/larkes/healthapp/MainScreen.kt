@@ -63,13 +63,13 @@ fun MainScreen() {
         Recom(
             title = "Питание",
             text = "Кажется, информация об этом звучала из каждого утюга, но для тех, кто пропустил, повторяем: последний прием пищи должен быть за 3-4 часа до сна.",
-            color = Color(0xffFEE2CF),
+            color = Color.Green.copy(alpha = 0.12f),
             image = R.drawable.photo4
         ),
         Recom(
             title = "Температура в спальне",
             text = "Начнем с того, почти все люди спят в одежде для сна: пижамах, сорочках, футболках. Все это дополнительно согревает наше тело.",
-            color = Color(0xffF1F3FA),
+            color = Color.Magenta.copy(alpha = 0.12f),
             image = R.drawable.photo5
         )
     )
@@ -88,7 +88,7 @@ fun MainScreen() {
                     model = "https://sun9-13.userapi.com/impg/ZQXeQlLwOot6PQATRlB-2ZU8K9n0Di5iaPpneg/7K0dMemnuk8.jpg?size=960x1280&quality=95&sign=d37fd89ac583f9713809e4c1f9dabea1&type=album",
                     contentDescription = "",
                     modifier = Modifier
-                        .size(52.dp)
+                        .size(42.dp)
                         .clip(RoundedCornerShape(100)),
                     contentScale = ContentScale.Crop
                 )
@@ -96,11 +96,11 @@ fun MainScreen() {
                 Icon(
                     imageVector = Icons.Default.Notifications,
                     contentDescription = "",
-                    modifier = Modifier.size(34.dp)
+                    modifier = Modifier.size(28.dp)
                 )
             }
 
-            Column(modifier = Modifier.padding(top = 10.dp)) {
+            Column(modifier = Modifier.padding(top = 18.dp)) {
                 Text(
                     text = "Добрый День,",
                     fontSize = 28.sp,
@@ -115,7 +115,7 @@ fun MainScreen() {
                 )
 
             }
-            Spacer(modifier = Modifier.height(25.dp))
+            Spacer(modifier = Modifier.height(18.dp))
         }
         Box {
 
@@ -125,6 +125,7 @@ fun MainScreen() {
                     .padding(top = 0.dp)
             ){
                 item{
+                    Spacer(modifier = Modifier.height(20.dp))
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -153,7 +154,7 @@ fun MainScreen() {
                             }
                             Column {
                                 Text(
-                                    text = "Тренеровка Медитации",
+                                    text = "Тренировка Медитации",
                                     fontSize = 18.sp,
                                     color = Color(0xff2B2B2B),
                                     fontWeight = FontWeight.Medium
@@ -275,7 +276,7 @@ fun MainScreen() {
                     Spacer(modifier = Modifier.height(10.dp))
                 }
                 item{
-                    Spacer(modifier = Modifier.height(60.dp))
+                    Spacer(modifier = Modifier.height(80.dp))
                 }
             }
             Box(modifier = Modifier
