@@ -1,5 +1,21 @@
 package com.larkes.healthapp
 
+import androidx.compose.animation.Animatable
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +43,7 @@ import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,10 +51,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen() {
 
@@ -241,37 +260,40 @@ fun MainScreen() {
                     Spacer(modifier = Modifier.height(15.dp))
                 }
                 itemsIndexed(recs){index, item ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(14.dp))
-                            .background(item.color)
-                            .padding(vertical = 18.dp, horizontal = 15.dp),
-                        horizontalArrangement = Arrangement.spacedBy(5.dp)
+                    AnimationBox(
                     ) {
-                        Column(modifier = Modifier.weight(0.7f)) {
-                            Text(
-                                text = item.title,
-                                fontSize = 18.sp,
-                                color = Color(0xff2B2B2B),
-                                fontWeight = FontWeight.SemiBold
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = item.text,
-                                fontSize = 12.sp,
-                                color = Color(0xff2B2B2B),
-                                fontWeight = FontWeight.Medium
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(14.dp))
+                                .background(item.color)
+                                .padding(vertical = 18.dp, horizontal = 15.dp),
+                            horizontalArrangement = Arrangement.spacedBy(5.dp)
+                        ) {
+                            Column(modifier = Modifier.weight(0.7f)) {
+                                Text(
+                                    text = item.title,
+                                    fontSize = 18.sp,
+                                    color = Color(0xff2B2B2B),
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = item.text,
+                                    fontSize = 12.sp,
+                                    color = Color(0xff2B2B2B),
+                                    fontWeight = FontWeight.Medium
+                                )
+                            }
+                            Image(
+                                painter = painterResource(id = item.image),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .weight(0.3f)
+                                    .heightIn(max = 100.dp),
+                                contentScale = ContentScale.Crop
                             )
                         }
-                        Image(
-                            painter = painterResource(id = item.image),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .weight(0.3f)
-                                .heightIn(max = 100.dp),
-                            contentScale = ContentScale.Crop
-                        )
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                 }

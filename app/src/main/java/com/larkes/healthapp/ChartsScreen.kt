@@ -1,5 +1,7 @@
 package com.larkes.healthapp
 
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -91,67 +94,83 @@ fun ChartsScreen() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ){
-                Card(
+                Box(
                     modifier = Modifier
                         .weight(0.45f)
-                        .height(125.dp),
-                    shape = RoundedCornerShape(12.dp)
+                        .height(125.dp)
                 ) {
-                    Column(verticalArrangement = Arrangement.SpaceBetween, modifier = Modifier.padding(horizontal = 10.dp, vertical = 12.dp)) {
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            Text(
-                                text = "Сон",
-                                color = Color(0xff2B2B2B),
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Medium
+                    AnimationBox(
+                        enter = expandHorizontally()
+                    ) {
+                        Card(
+                            modifier = Modifier.fillMaxSize(),
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Column(verticalArrangement = Arrangement.SpaceBetween, modifier = Modifier.padding(horizontal = 10.dp, vertical = 12.dp)) {
+                                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                    Text(
+                                        text = "Сон",
+                                        color = Color(0xff2B2B2B),
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.Medium
+                                    )
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.baseline_bedtime_24),
+                                        contentDescription = "",
+                                        tint = Color(0xff5342AC),
+                                        modifier = Modifier.size(26.dp)
+                                    )
+                                }
+                                Text(
+                                    text = "7 ч 34 мин",
+                                    color = Color(0xff5342AC),
+                                    fontSize = 22.sp,
+                                    fontWeight = FontWeight.SemiBold
                                 )
-                            Icon(
-                                painter = painterResource(id = R.drawable.baseline_bedtime_24),
-                                contentDescription = "",
-                                tint = Color(0xff5342AC),
-                                modifier = Modifier.size(26.dp)
-                            )
+                            }
                         }
-                        Text(
-                            text = "7 ч 34 мин",
-                            color = Color(0xff5342AC),
-                            fontSize = 22.sp,
-                            fontWeight = FontWeight.SemiBold
-                        )
                     }
                 }
-                Card(
+                Box(
                     modifier = Modifier
                         .weight(0.45f)
-                        .height(125.dp),
-                    shape = RoundedCornerShape(12.dp)
+                        .height(125.dp)
                 ) {
-                    Column(modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 10.dp, vertical = 12.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.SpaceBetween
+                    AnimationBox(
+                        enter = expandHorizontally()
                     ) {
-                        Text(
-                            text = "Качество Сна",
-                            color = Color(0xff2B2B2B),
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                        Spacer(modifier = Modifier.height(5.dp))
-                        Box(contentAlignment = Alignment.Center) {
-                            CircularProgressIndicator(
-                                progress = 0.63f,
-                                modifier = Modifier.size(68.dp),
-                                color = Color(0xffF09E54).copy(alpha = 0.65f),
-                                strokeWidth = 6.dp
-                            )
-                            Text(
-                                text = "63%",
-                                color = Color(0xFFEE9545),
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.SemiBold
-                            )
+                        Card(
+                            modifier = Modifier.fillMaxSize(),
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Column(modifier = Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 10.dp, vertical = 12.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = "Качество Сна",
+                                    color = Color(0xff2B2B2B),
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Medium
+                                )
+                                Spacer(modifier = Modifier.height(5.dp))
+                                Box(contentAlignment = Alignment.Center) {
+                                    CircularProgressIndicator(
+                                        progress = 0.63f,
+                                        modifier = Modifier.size(68.dp),
+                                        color = Color(0xffF09E54).copy(alpha = 0.65f),
+                                        strokeWidth = 6.dp
+                                    )
+                                    Text(
+                                        text = "63%",
+                                        color = Color(0xFFEE9545),
+                                        fontSize = 24.sp,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -159,157 +178,168 @@ fun ChartsScreen() {
         }
         item{
             Spacer(modifier = Modifier.height(10.dp))
-            Card(
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Column(
-                    Modifier
-                        .padding(horizontal = 10.dp, vertical = 12.dp)
+            AnimationBox(
+                enter = expandHorizontally()
+            ){
+                Card(
+                    shape = RoundedCornerShape(12.dp)
                 ) {
-                    Text(
-                        text = "Фазы сна",
-                        color = Color(0xff2B2B2B),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Spacer(modifier = Modifier.height(25.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    Column(
+                        Modifier
+                            .padding(horizontal = 10.dp, vertical = 12.dp)
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .height(120.dp)
-                                .weight(0.3f)
+                        Text(
+                            text = "Фазы сна",
+                            color = Color(0xff2B2B2B),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Spacer(modifier = Modifier.height(25.dp))
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
-                            PieChart(
-                                pieChartData = PieChartData(donutChartData),
-                                modifier = Modifier.fillMaxSize(),
-                                animation = simpleChartAnimation(),
-                                sliceDrawer = SimpleSliceDrawer(60f)
-                            )
-                        }
-                        Column(modifier = Modifier.weight(0.55f)) {
-                           DonutLabelItem(title = "Легкий сон", color = Color(0xFFEF5DA8), time = "5ч 25 мин")
-                           DonutLabelItem(title = "Глубокий сон", color = Color(0xff5342AC), time = "1ч 11 мин")
-                           DonutLabelItem(title = "Быстрый сон", color = Color(0xFFA0E3E2), time = "58 мин")
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    RowDonatStat(
-                        title = "Время глубокого сна 56 балла",
-                        text = "Норма 70-100 балла",
-                        background = Color.Red.copy(alpha = 0.08f),
-                        subtext = "Низкий",
-                        colorText = Color.Red.copy(alpha = 0.48f)
-                    )
-                    RowDonatStat(
-                        title = "Глубокий сон 16%",
-                        text = "Норма 20-60%",
-                        subtext = "Низкий",
-                        colorText = Color(0xFF0E84E0).copy(alpha = 0.7f)
-                    )
-
-
-                }
-
-            }
-        }
-        item {
-            Spacer(modifier = Modifier.height(10.dp))
-            Card(
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Column(
-                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 12.dp)
-                ) {
-                    Text(
-                        text = "Активность",
-                        color = Color(0xff2B2B2B),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Spacer(modifier = Modifier.height(15.dp))
-                    LineChart(
-                        linesChartData = listOf(lineChartData),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(140.dp),
-                    animation = simpleChartAnimation(),
-                    pointDrawer = FilledCircularPointDrawer(),
-                    xAxisDrawer = SimpleXAxisDrawer(),
-                    yAxisDrawer = SimpleYAxisDrawer(),
-                    horizontalOffset = 5f
-                    )
-                    Spacer(modifier = Modifier.height(20.dp))
-                    RowDonatStat(
-                        title = "Кол-во пробуждений 1 раз",
-                        text = "Норма: 0-1 раз",
-                        subtext = "",
-                        background = Color.Green.copy(alpha = 0.10f)
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    RowDonatStat(
-                        title = "Кол-во дыхания 94 балла",
-                        text = "Норма: 70-100 балла",
-                        subtext = "",
-                        background = Color.Green.copy(alpha = 0.05f)
-                    )
-                }
-            }
-        }
-        item {
-            Spacer(modifier = Modifier.height(10.dp))
-            Card(
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Column(
-                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 12.dp)
-                ) {
-                    Text(
-                        text = "Анализ и рекомендации",
-                        color = Color(0xff2B2B2B),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Spacer(modifier = Modifier.height(15.dp))
-                    Text(
-                        text = "Прошлой ночью вы спали нормально. Оценка качества непрерывного глубокого сна составила 63%. Это низкое значение. Глубокий сон был очень прерывистым. Пробуждения, повторяющиеся на протяжении долгого времени, нарушают работу эндокринной системы, ухудшают выработку инсулина и увеличивают риск развития диабета.",
-                        color = Color(0xff2B2B2B),
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Spacer(modifier = Modifier.height(15.dp))
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(15))
-                            .background(Color(0xffF1F3FA))
-                            .fillMaxWidth()
-                            .padding(horizontal = 15.dp, vertical = 10.dp)
-                    ) {
-                        Row{
                             Box(
-                                modifier = Modifier.padding(end = 4.dp, top = 2.dp)
+                                modifier = Modifier
+                                    .height(120.dp)
+                                    .weight(0.3f)
                             ) {
-                                Icon(painterResource(id = R.drawable.baseline_edit_note_24),
-                                    contentDescription = "",
-                                    tint = Color(0xff5342AC),
-                                    modifier = Modifier
-                                        .size(20.dp)
+                                PieChart(
+                                    pieChartData = PieChartData(donutChartData),
+                                    modifier = Modifier.fillMaxSize(),
+                                    animation = simpleChartAnimation(),
+                                    sliceDrawer = SimpleSliceDrawer(60f)
                                 )
                             }
-                            Text(
-                                text = "Расслабление мышц перед сном снимает тонус и успокаивает, облегчая засыпание. Это также поможет улучшить качество сна.",
-                                color = Color(0xFF7482A2),
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Medium,
-                            )
+                            Column(modifier = Modifier.weight(0.55f)) {
+                                DonutLabelItem(title = "Легкий сон", color = Color(0xFFEF5DA8), time = "5ч 25 мин")
+                                DonutLabelItem(title = "Глубокий сон", color = Color(0xff5342AC), time = "1ч 11 мин")
+                                DonutLabelItem(title = "Быстрый сон", color = Color(0xFFA0E3E2), time = "58 мин")
+                            }
                         }
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        RowDonatStat(
+                            title = "Время глубокого сна 56 балла",
+                            text = "Норма 70-100 балла",
+                            background = Color.Red.copy(alpha = 0.08f),
+                            subtext = "Низкий",
+                            colorText = Color.Red.copy(alpha = 0.48f)
+                        )
+                        RowDonatStat(
+                            title = "Глубокий сон 16%",
+                            text = "Норма 20-60%",
+                            subtext = "Низкий",
+                            colorText = Color(0xFF0E84E0).copy(alpha = 0.7f)
+                        )
+
+
                     }
 
+                }
+            }
+        }
+        item {
+            Spacer(modifier = Modifier.height(10.dp))
+            AnimationBox(
+                enter = expandHorizontally()
+            ){
+                Card(
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 12.dp)
+                    ) {
+                        Text(
+                            text = "Активность",
+                            color = Color(0xff2B2B2B),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Spacer(modifier = Modifier.height(15.dp))
+                        LineChart(
+                            linesChartData = listOf(lineChartData),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(140.dp),
+                            animation = simpleChartAnimation(),
+                            pointDrawer = FilledCircularPointDrawer(),
+                            xAxisDrawer = SimpleXAxisDrawer(),
+                            yAxisDrawer = SimpleYAxisDrawer(),
+                            horizontalOffset = 5f
+                        )
+                        Spacer(modifier = Modifier.height(20.dp))
+                        RowDonatStat(
+                            title = "Кол-во пробуждений 1 раз",
+                            text = "Норма: 0-1 раз",
+                            subtext = "",
+                            background = Color.Green.copy(alpha = 0.10f)
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        RowDonatStat(
+                            title = "Кол-во дыхания 94 балла",
+                            text = "Норма: 70-100 балла",
+                            subtext = "",
+                            background = Color.Green.copy(alpha = 0.05f)
+                        )
+                    }
+                }
+            }
+        }
+        item {
+            Spacer(modifier = Modifier.height(10.dp))
+            AnimationBox(
+                enter = expandHorizontally()
+            ) {
+                Card(
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 12.dp)
+                    ) {
+                        Text(
+                            text = "Анализ и рекомендации",
+                            color = Color(0xff2B2B2B),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Spacer(modifier = Modifier.height(15.dp))
+                        Text(
+                            text = "Прошлой ночью вы спали нормально. Оценка качества непрерывного глубокого сна составила 63%. Это низкое значение. Глубокий сон был очень прерывистым. Пробуждения, повторяющиеся на протяжении долгого времени, нарушают работу эндокринной системы, ухудшают выработку инсулина и увеличивают риск развития диабета.",
+                            color = Color(0xff2B2B2B),
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Spacer(modifier = Modifier.height(15.dp))
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(15))
+                                .background(Color(0xffF1F3FA))
+                                .fillMaxWidth()
+                                .padding(horizontal = 15.dp, vertical = 10.dp)
+                        ) {
+                            Row{
+                                Box(
+                                    modifier = Modifier.padding(end = 4.dp, top = 2.dp)
+                                ) {
+                                    Icon(painterResource(id = R.drawable.baseline_edit_note_24),
+                                        contentDescription = "",
+                                        tint = Color(0xff5342AC),
+                                        modifier = Modifier
+                                            .size(20.dp)
+                                    )
+                                }
+                                Text(
+                                    text = "Расслабление мышц перед сном снимает тонус и успокаивает, облегчая засыпание. Это также поможет улучшить качество сна.",
+                                    color = Color(0xFF7482A2),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Medium,
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
